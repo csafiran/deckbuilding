@@ -1,3 +1,4 @@
+#importing math to use math.shuffle for the player's deck
 import math
 
 #####
@@ -5,7 +6,8 @@ import math
 #####
 
 class Boardstate:
-# this is where the UI would go. We plan on doing this part last.
+# this is where the UI would go. We plan on doing this part last. It would most
+# likely be hardcoded at first.
 
 #####
 # Game Logic
@@ -27,7 +29,17 @@ class GameState:
     """
     def __init__(self):
         """Set attributes."""
-        
+    def buy():
+    #function that will represent what happens when a player purchases a card
+    #from the center row
+    
+    def defeat():
+    #function that will represent what happens when a player defeats a monster 
+    #card from the center row
+    
+    def action():
+    #function that will represent the actions the player does with their cards
+    #in their hand   
 
 class Players:
     """Class for a deckbuilding player.
@@ -45,14 +57,16 @@ class Players:
         Args:
             state (GameState): a snapshot of the current state of the game.
         """
-    def buy():
-    #function that will represent what happens when a player purchases a card
-    #from the center row
     
-    def defeat():
-    #function that will represent what happens when a player defeats a monster 
-    #card from the center row
+    def deck()
+    # function to represent each player's deck of cards
     
-    def action():
-    #function that will represent the actions the player does with their cards
-    #in their hand
+    def hand()
+    # function to represent each player's hand of 5 cards
+    
+    def discard()
+    # function to represent each player's discard pile
+    
+    def player_points()
+    # function to represent each player's points they have aquired
+    
