@@ -1,4 +1,4 @@
 #this is our new file
 #testings
 print("hell0!")
-print("testing")
+print("test")
