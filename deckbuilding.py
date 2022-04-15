@@ -29,18 +29,30 @@ class GameState:
     """
     def __init__(self):
         """Set attributes."""
-    def buy():
+    def buy(self,money, item):
+        """
+        this function will do the calculation on players money, once this function been called , 
+        player will get something and money will be used
+        Args:
+
+        money:
+        player spent points 
+
+        item:
+        what player will bought
+
+        """
     #function that will represent what happens when a player purchases a card
     #from the center row
     
     def defeat():
-    #function that will represent what happens when a player defeats a monster 
-    #card from the center row
-    
+        """function that will represent what happens when a player defeats a monster 
+    card from the center row
+        """
     def action():
-    #function that will represent the actions the player does with their cards
-    #in their hand   
-
+        """function that will represent the actions the player does with their cards
+        in their hand   
+        """
 class Players:
     """Class for a deckbuilding player.
     
@@ -59,14 +71,29 @@ class Players:
         """
     
     def deck()
-    # function to represent each player's deck of cards
-    
+        """function to represent each player's deck of cards
+        """
     def hand()
-    # function to represent each player's hand of 5 cards
-    
+        """function to represent each player's hand of 5 cards
+        """
     def discard()
-    # function to represent each player's discard pile
-    
+        """function to represent each player's discard pile
+        """
     def player_points()
-    # function to represent each player's points they have aquired
-    
+        """function to represent each player's points they have aquired 
+
+        """
+def main():
+    """
+    The main function is mainly used to call other functions and run our game.
+
+    return:
+    it will return the state of the game
+
+    Side Facts:
+    it will print the info of the game.
+    """
+
+
+if __name__ == "__main__":
+    main()
