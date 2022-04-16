@@ -77,16 +77,16 @@ class Players:
             state (GameState): a snapshot of the current state of the game.
         """
     
-    def deck():
+    def deck(self):
         """function to represent each player's deck of cards
         """
-    def hand():
+    def hand(self):
         """function to represent each player's hand of 5 cards
         """
-    def discard():
+    def discard(self):
         """function to represent each player's discard pile
         """
-    def player_points():
+    def player_points(self):
         """function to represent each player's points they have aquired 
 
         """
