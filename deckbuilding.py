@@ -5,7 +5,7 @@ import math
 # User Interface
 #####
 
-class Boardstate:
+#class Boardstate:              <--- commented out this class (Will be done later)
 # this is where the UI would go. We plan on doing this part last. It would most
 # likely be hardcoded at first.
 
@@ -41,13 +41,20 @@ class GameState:
         item:
         what player will bought
 
+        Side effects:
+            money value may change,
+            player will aquire item, therefore game state will be effected
+            cards may be sent to discard pile
         """
     #function that will represent what happens when a player purchases a card
     #from the center row
     
     def defeat():
         """function that will represent what happens when a player defeats a monster 
-    card from the center row
+        card from the center row
+    
+        Side effects: 
+            may increase points value
         """
     def action():
         """function that will represent the actions the player does with their cards
@@ -70,16 +77,16 @@ class Players:
             state (GameState): a snapshot of the current state of the game.
         """
     
-    def deck()
+    def deck():
         """function to represent each player's deck of cards
         """
-    def hand()
+    def hand():
         """function to represent each player's hand of 5 cards
         """
-    def discard()
+    def discard():
         """function to represent each player's discard pile
         """
-    def player_points()
+    def player_points():
         """function to represent each player's points they have aquired 
 
         """
