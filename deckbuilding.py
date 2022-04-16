@@ -33,13 +33,13 @@ class GameState:
         """
         this function will do the calculation on players money, once this function been called , 
         player will get something and money will be used
+       
         Args:
+            money:
+            player spent points 
 
-        money:
-        player spent points 
-
-        item:
-        what player will bought
+            item:
+            what player will bought
 
         Side effects:
             money value may change,
@@ -58,13 +58,13 @@ class GameState:
         """
     def action():
         """function that will represent the actions the player does with their cards
-        in their hand   
+            in their hand   
         """
 class Players:
     """Class for a deckbuilding player.
     
-    Attributes:
-        name (str): the player's name.
+        Attributes:
+            name (str): the player's name.
     """
     def __init__(self, name):
         self.name = name
