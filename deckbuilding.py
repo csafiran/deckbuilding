@@ -96,13 +96,14 @@ class Players:
     
     
     def hand(self):
-        
+        """
+        function to represent each player's hand of 5 cards
+        """
         self.playerHand = []
         self.playerHand += (self.deck())
         return self.playerHand
         
-        """function to represent each player's hand of 5 cards
-        """
+        
     def discard():
         """function to represent each player's discard pile
         """
