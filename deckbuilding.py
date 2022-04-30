@@ -1,17 +1,26 @@
 #importing math to use math.shuffle for the player's deck
 import math
+<<<<<<< HEAD
 import random
 import numpy as np
+=======
+>>>>>>> ed444ffd3fc50835cfd54c5cfc2ba60aaa5ae6ea
 
 #####
 # User Interface
 #####
 
+<<<<<<< HEAD
 #class Boardstate:          <--- commented out class (will be done later)
 
 
     # this is where the UI would go. We plan on doing this part last. It would most
     # likely be hardcoded at first.
+=======
+#class Boardstate:              <--- commented out this class (Will be done later)
+# this is where the UI would go. We plan on doing this part last. It would most
+# likely be hardcoded at first.
+>>>>>>> ed444ffd3fc50835cfd54c5cfc2ba60aaa5ae6ea
 
 #####
 # Game Logic
@@ -37,6 +46,7 @@ class GameState:
         """
         this function will do the calculation on players money, once this function been called , 
         player will get something and money will be used
+<<<<<<< HEAD
         
         Args:
 
@@ -52,23 +62,53 @@ class GameState:
         
             
 
+=======
+       
+        Args:
+            money:
+            player spent points 
+
+            item:
+            what player will bought
+
+        Side effects:
+            money value may change,
+            player will aquire item, therefore game state will be effected
+            cards may be sent to discard pile
+>>>>>>> ed444ffd3fc50835cfd54c5cfc2ba60aaa5ae6ea
         """
     #function that will represent what happens when a player purchases a card
     #from the center row
     
     def defeat():
         """function that will represent what happens when a player defeats a monster 
+<<<<<<< HEAD
     card from the center row
         """
     def action():
         """function that will represent the actions the player does with their cards
         in their hand   
+=======
+        card from the center row
+    
+        Side effects: 
+            may increase points value
+        """
+    def action():
+        """function that will represent the actions the player does with their cards
+            in their hand   
+>>>>>>> ed444ffd3fc50835cfd54c5cfc2ba60aaa5ae6ea
         """
 class Players:
     """Class for a deckbuilding player.
     
+<<<<<<< HEAD
     Attributes:
         name (str): the player's name.
+=======
+        Attributes:
+            name (str): the player's name.
+>>>>>>> ed444ffd3fc50835cfd54c5cfc2ba60aaa5ae6ea
     """
     def __init__(self, name):
         self.name = name
@@ -79,6 +119,7 @@ class Players:
         
         Args:
             state (GameState): a snapshot of the current state of the game.
+<<<<<<< HEAD
             
         Side Effects:
             May print gamestate 
@@ -110,6 +151,22 @@ class Players:
     def player_points():
         """function to represent each player's points they have aquired 
         f
+=======
+        """
+    
+    def deck(self):
+        """function to represent each player's deck of cards
+        """
+    def hand(self):
+        """function to represent each player's hand of 5 cards
+        """
+    def discard(self):
+        """function to represent each player's discard pile
+        """
+    def player_points(self):
+        """function to represent each player's points they have aquired 
+
+>>>>>>> ed444ffd3fc50835cfd54c5cfc2ba60aaa5ae6ea
         """
 def main():
     """
