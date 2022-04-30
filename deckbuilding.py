@@ -35,8 +35,8 @@ class GameState:
         """Set attributes."""
     def buy(self,money, item):
         """
-        this function will do the calculation on players money, once this function been called , 
-        player will get something and money will be used
+        this function will do the calculation on the player's money, once this 
+        function has been called, player will get something and money will be used
         
         Args:
 
