@@ -89,7 +89,7 @@ class Players:
         """
         function to represent each player's deck of cards
         """
-        playerDeck = np.array(["test1", "test2","test3","test4","test5","test6","test7","test8"])
+        playerDeck = np.array(["test1", "test2","test3","test4","test5","test6","test7"])
         handCards = [0,1,2,3,4]
         random.shuffle(playerDeck)
         return list(playerDeck[handCards])
