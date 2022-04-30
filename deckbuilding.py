@@ -101,7 +101,7 @@ class Players:
         self.playerHand += (self.deck())
         return self.playerHand
         
-        """function to represent each player's hand of 5 cards
+        """function to represent each player's hand of 5 cards and discard 5 cards
         """
     def discard():
         """function to represent each player's discard pile
