@@ -84,14 +84,21 @@ class Players:
             May print gamestate 
         """
     
-    def deck(self):
+    def deck(self,path):
         
         """
         function to represent each player's deck of cards
         """
+        
+        
         playerDeck = np.array(["test1", "test2","test3","test4","test5","test6","test7"])
         handCards = [0,1,2,3,4]
         random.shuffle(playerDeck)
+        
+        #TODO:if len(playerDeck) > 5:
+            #TODO:self.playerDeck+= self.discard()   <------ MAY BE ADDED TO GAMESTATE
+    
+    
         return list(playerDeck[handCards])
     
     
@@ -104,13 +111,17 @@ class Players:
         return self.playerHand
         
         
-    def discard():
+    def discard(self):
         """function to represent each player's discard pile
         """
-    def player_points():
-        """function to represent each player's points they have aquired 
+    def player_points(self):
+        
+        """
+        function to represent each player's points they have aquired 
 
         """
+        self.points = 0
+        
 def main():
     """
     The main function is mainly used to call other functions and run our game.
