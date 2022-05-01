@@ -98,7 +98,7 @@ class Players:
                 textList.append(line)
                 
         
-        playerDeck = np.array(["test1", "test2","test3","test4","test5","test6","test7"])
+        playerDeck = np.array([textList])
         handCards = [0,1,2,3,4]
         random.shuffle(playerDeck)
         
