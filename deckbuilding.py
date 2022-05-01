@@ -90,6 +90,13 @@ class Players:
         function to represent each player's deck of cards
         """
         
+        with open(path, encoding="UTF-8") as f:
+            textList = []
+            for line in f:
+                line = line.strip()
+                line = line.split()
+                textList.append(line)
+                
         
         playerDeck = np.array(["test1", "test2","test3","test4","test5","test6","test7"])
         handCards = [0,1,2,3,4]
