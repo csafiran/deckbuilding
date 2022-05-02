@@ -64,7 +64,7 @@ class GameState:
         """function that will represent the actions the player does with their cards
         in their hand   
         """
-class Players:
+class Player:
     """Class for a deckbuilding player.
     
     Attributes:
@@ -83,6 +83,9 @@ class Players:
         Side Effects:
             May print gamestate 
         """
+        
+        
+        ##TODO:print(GameState)
     
     def deck(self,path):
         
@@ -121,6 +124,9 @@ class Players:
     def discard(self):
         """function to represent each player's discard pile
         """
+        self.discardPile = []
+        
+        
     def player_points(self):
         
         """
