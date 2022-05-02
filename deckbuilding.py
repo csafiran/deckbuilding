@@ -1,7 +1,6 @@
 #importing math to use math.shuffle for the player's deck
 import math
 import random
-import numpy as np
 
 #####
 # User Interface
@@ -69,9 +68,18 @@ class Player:
     
     Attributes:
         name (str): the player's name.
+        money(int): the players money)
     """
     def __init__(self, name):
         self.name = name
+        self.money = 0
+        self.points = 0
+        
+        #player hand will be added to discard pile in gameState
+        #discardPiple may also need to create a new text file that will 
+        # be changed and replace deck text file once deck text file is empty
+        
+        self.discardPile = []
     #We may need to initilize our deck, handle, and discard piles here as well
     
     def turn(self, state):
@@ -99,11 +107,27 @@ class Player:
                 line = line.strip()
                 line = line.split()
                 textList.append(line)
-                
+        #f.write line
         
-        playerDeck = np.array([textList])
-        handCards = [0,1,2,3,4]
-        random.shuffle(playerDeck)
+        #playerDeck = np.array([textList])
+        #handCards = [0]
+        playerDeck = textList[0]
+        playerHandDraw = []
+        if len(playerDeck) >= 5:
+            for char in len(textList):
+                playerHandDraw+= playerDeck
+                char +=1
+        else:
+            for char in len(textList):
+                playerHandDraw += playerDeck
+                char += 1
+            playerDeck += self.discardPile
+        return playerHandDraw
+                
+            
+            
+                
+        random.shuffle(playerHandDraw)
         
         #TODO:if len(playerDeck) > 5:
             #TODO:self.playerDeck+= self.discard()   <------ MAY BE ADDED TO GAMESTATE
@@ -121,19 +145,12 @@ class Player:
         return self.playerHand
         
         
-    def discard(self):
-        """function to represent each player's discard pile
-        """
-        self.discardPile = []
-        
-        
-    def player_points(self):
-        
-        """
-        function to represent each player's points they have aquired 
 
-        """
-        self.points = 0
+
+        
+        
+        
+        
         
 def main():
     """
