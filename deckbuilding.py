@@ -16,53 +16,9 @@ import random
 # Game Logicdddd
 #####
 
-class GameState:
-    """Provide information on the current state of the game. Used in the
-    Player.turn() method.
-    
-    Attributes:
-        board (str): a representation of the board, with cards represented as 
-        list of strings.
-        point_pool (int): the remaining points in the center row.
-        center_cards (list of str): characters that represent a monster, 
-        combat points, money, and a respective cost to defeat or aquire them 
-        (in either combat points or money).
-        center_deck (list of strings): a randomly generated assortment of cards
-        that would enter the center row.
-    """
-    def __init__(self):
-        """Set attributes."""
-    def buy(self,money, item):
-        """
-        this function will do the calculation on the player's money, once this 
-        function has been called, player will get something and money will be used
-        
-        Args:
 
-        money:
-        player spent points 
 
-        item:
-        what player will buy with money
-        
-        Side effects:
-            money value may change,
-            player will aquire item, therefore game sate will be effected 
-        
-            
 
-        """
-    #function that will represent what happens when a player purchases a card
-    #from the center row
-    
-    def defeat():
-        """function that will represent what happens when a player defeats a monster 
-    card from the center row
-        """
-    def action():
-        """function that will represent the actions the player does with their cards
-        in their hand   
-        """
 class Player:
     """Class for a deckbuilding player.
     
@@ -143,12 +99,74 @@ class Player:
         self.playerHand = []
         self.playerHand += (self.deck())
         return self.playerHand
-        
+    
+class Monster:
+    def __init__(self, hp, honer):
+        self.hp = hp
+        self.honer = honer
+    def killed(self):
+        if self.hp == 0:
+            Player.honer += self.honer
+        return f"Now you have {Player.honer} total honers"
         
 
 
         
+class GameAction:
+    """Provide information on the current state of the game. Used in the
+    Player.turn() method.
+    
+    Attributes:
+        board (str): a representation of the board, with cards represented as 
+        list of strings.
+        point_pool (int): the remaining points in the center row.
+        center_cards (list of str): characters that represent a monster, 
+        combat points, money, and a respective cost to defeat or aquire them 
+        (in either combat points or money).
+        center_deck (list of strings): a randomly generated assortment of cards
+        that would enter the center row.
+    """
+    def __init__(self):
+        """Set attributes."""
+    def buy(self,money, item):
+        """
+        this function will do the calculation on the player's money, once this 
+        function has been called, player will get something and money will be used
         
+        Args:
+
+        money:
+        player spent points 
+
+        item:
+        what player will buy with money
+        
+        Side effects:
+            money value may change,
+            player will aquire item, therefore game sate will be effected 
+        
+            
+
+        """
+    def cards(self, userchoice, mchoice):
+        attack1 = 2
+        attack2 = 3
+        attack3 = 4
+        if userchoice == attack1:
+
+
+
+    #function that will represent what happens when a player purchases a card
+    #from the center row
+    
+    def defeat():
+        """function that will represent what happens when a player defeats a monster 
+    card from the center row
+        """
+    def action():
+        """function that will represent the actions the player does with their cards
+        in their hand   
+        """
         
         
         
@@ -162,6 +180,17 @@ def main():
     Side Facts:
     it will print the info of the game.
     """
+    m1 = Monster(random.randint(1,6), random.randint(1,5))
+    m2 = Monster(random.randint(1,6), random.randint(1,5))
+    m3 = Monster(random.randint(1,6), random.randint(1,5))
+    m4 = Monster(random.randint(1,6), random.randint(1,5))
+    m5 = Monster(random.randint(1,6), random.randint(1,5))
+    
+
+
+
+
+
 
 
 if __name__ == "__main__":
