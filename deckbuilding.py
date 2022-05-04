@@ -27,38 +27,46 @@ class Player:
         name (str): the player's name.
         money(int): the players money)
     """
-    def __init__(self, name):
+    def __init__(self, name, path):
         self.name = name
-        self.money = 0
         self.points = 0
-        
+        self.path = path
         #player hand will be added to discard pile in gameState
         #discardPiple may also need to create a new text file that will 
         #be changed and replace deck text file once deck text file is empty
-        
+        self.drawPile = []
         self.discardPile = []
     #We may need to initilize our deck, handle, and discard piles here as well
     
     def turn(self, state):
-        """Take a turn.
+        """Take a turn. Draing the player's hand and having the player make 
+        decisions with their hand.
         
         Args:
             state (GameState): a snapshot of the current state of the game.
             
         Side Effects:
-            May print gamestate 
+            May print gamestate or other UI information
         """
-        
+        hand = self.draw()
+        money = addMoney(hand)
+        kombat = addKombat(hand)
+        chooseActions(self, state, money, kombat)
+        #chooseActions will be used to include UI (display money, game state,
+        # and kombat points)
         
         ##TODO:print(GameState)
     
-    def deck(self,path):
+    def draw(self):
         
         """
-        function to represent each player's deck of cards
+        function to draw five cards from the player's deck. Returns "cards" as
+        a list. Adds them to the player's discard pile. This function will 
+        automatically take cards from the player's discard pile when the deck
+        has zero cards and still needs to draw one or more.
         """
         
-        with open(path, encoding="UTF-8") as f:
+        with open(self.path, encoding="UTF-8") as f:
             textList = []
             for line in f:
                 line = line.strip()
@@ -92,14 +100,13 @@ class Player:
     
         return list(playerDeck[handCards])
     
-    
-    def hand(self):
+    def buy(self, card):
+        """Adds the card the player's discard pile
+
+        Args:
+            card (_type_): _description_
         """
-        function to represent each player's hand of 5 cards
-        """
-        self.playerHand = []
-        self.playerHand += (self.deck())
-        return self.playerHand
+        pass
     
 class Monster:
     def __init__(self, hp, honer):
@@ -119,21 +126,24 @@ class GameAction:
     def __init__(self):
         """Set attributes."""
 
-    def cards(self, userchoice, mchoice):
-        attack1 = 2
-        attack2 = 3
-        attack3 = 4
+
     
     def menu(self):
         while userResponse >= 1 & userResponse <=5:
-            print(f"your have 5 card which is {Player}, {Player}, {Player}, {Player}, {Player}")
+
+            print(f"your have 5 card which is {Player.draw}")
             userResponse = input("which one would like you to use")
         return userResponse
-        
+    
+    def battlecard(self):
+
         
 
     
     
+        if userchoice == attack1:
+            pass
+
 
 
 
@@ -155,7 +165,11 @@ class GameAction:
             pk.honer += self.honer
         return f"Now you have {pk.honer} total honers"
         
-        
+def test1():
+    print("starttest1")
+    player117 = Player("John", "playerDeck.txt")
+    print(player117.draw())    
+    print("endtest1")   
         
 def main():
     """
@@ -192,4 +206,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    test1()
+    #main()
