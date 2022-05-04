@@ -65,40 +65,12 @@ class Player:
         automatically take cards from the player's discard pile when the deck
         has zero cards and still needs to draw one or more.
         """
-        
-        with open(self.path, encoding="UTF-8") as f:
-            textList = []
-            for line in f:
-                line = line.strip()
-                line = line.split()
-                textList.append(line)
-        #f.write line
-        
-        #playerDeck = np.array([textList])
-        #handCards = [0]
-        playerDeck = textList[0]
-        playerHandDraw = []
-        if len(playerDeck) >= 5:
-            for char in len(textList):
-                playerHandDraw+= playerDeck
-                char +=1
-        else:
-            for char in len(textList):
-                playerHandDraw += playerDeck
-                char += 1
-            playerDeck += self.discardPile
-        return playerHandDraw
-                
+
             
-            
-                
-        random.shuffle(playerHandDraw)
+
         
-        #TODO:if len(playerDeck) > 5:
-            #TODO:self.playerDeck+= self.discard()   <------ MAY BE ADDED TO GAMESTATE
     
-    
-        return list(playerDeck[handCards])
+        
     
     def buy(self, card):
         """Adds the card the player's discard pile
@@ -112,12 +84,6 @@ class Monster:
     def __init__(self, hp, honer):
         self.hp = hp
         self.honer = honer
-
-
-
-
-        
-
 
         
 class GameAction:
@@ -181,16 +147,17 @@ def main():
     Side Facts:
     it will print the info of the game.
     """
-    m1 = Monster(random.randint(1,6), random.randint(1,5))
-    m2 = Monster(random.randint(1,6), random.randint(1,5))
-    m3 = Monster(random.randint(1,6), random.randint(1,5))
-    m4 = Monster(random.randint(1,6), random.randint(1,5))
-    m5 = Monster(random.randint(1,6), random.randint(1,5))
-    monster5 = []
-    player1 = Player("tmz")
-    player2 = Player("sss")
-    while True:
-        us = GameAction.menu
+   # m1 = Monster(random.randint(1,6), random.randint(1,5))
+   # m2 = Monster(random.randint(1,6), random.randint(1,5))
+   # m3 = Monster(random.randint(1,6), random.randint(1,5))
+    #m4 = Monster(random.randint(1,6), random.randint(1,5))
+   # m5 = Monster(random.randint(1,6), random.randint(1,5))
+   # monster5 = []
+   # player1 = Player("tmz")
+   # player2 = Player("sss")
+    #while True:
+       # us = GameAction.menu
+    test1()
         
 
 
