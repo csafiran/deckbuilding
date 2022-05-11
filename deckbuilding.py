@@ -14,10 +14,8 @@ from tkinter import Menu
     # likely be hardcoded at first.
 
 #####
-# Game Logicdddd
+# Game Logic
 #####
-
-
 
 
 class Player:
@@ -56,7 +54,8 @@ class Player:
         # and kombat points)
         
         ##TODO:print(GameState)
-    
+        print(self.name + "'s hand: " + str(hand))
+        
     def draw(self):
         
         """
@@ -66,35 +65,37 @@ class Player:
         has zero cards and still needs to draw one or more.
         """
         
-        with open(self.path, encoding="UTF-8") as f:
-            textList = []
-            for line in f:
-                line = line.strip()
-                line = line.split()
-                textList.append(line)
+        # with open(self.path, encoding="UTF-8") as f:
+        #     textList = []
+        #     for line in f:
+        #         line = line.strip()
+        #         line = line.split()
+        #         textList.append(line)
 
-        randomTextList = random.sample(textList,len(textList))
+        # randomTextList = random.sample(textList,len(textList))
         playerHandDraw = []
 
-        while len(randomTextList) > 5:
-            for line in randomTextList:
-                for i in line:
-                    playerHandDraw.append(i)
-                    textList.pop()
-                    randomTextList.pop()
+        # while len(randomTextList) > 5:
+        #     for line in randomTextList:
+        #         for i in line:
+        #             playerHandDraw.append(i)
+        #             textList.pop()
+        #             randomTextList.pop()
 
-        while len(randomTextList)<=4:
-            for line in randomTextList:
-                for i in line:
-                    playerHandDraw.append(i)
-                    textList.pop()
-                    randomTextList.pop()
+        # while len(randomTextList)<=4:
+        #     for line in randomTextList:
+        #         for i in line:
                     
-        print(playerHandDraw)
+        #             playerHandDraw.append(i)
+        #             textList.pop()
+        #             randomTextList.pop()
+                    
+        # print(playerHandDraw)
+        return playerHandDraw
                             
-
-        
-    
+    def calc_score(self):
+        return 0
+    # TODO Stubby
         
     
     def buy(self, card):
@@ -109,7 +110,11 @@ class Monster:
     def __init__(self, hp, honer):
         self.hp = hp
         self.honer = honer
-
+        
+class BoardState:
+    def __init__(self):
+        self.points = 60
+        #TODO: Add other properties
         
 class GameAction:
     """
@@ -159,7 +164,7 @@ class GameAction:
     #print(player117.draw())    
     #print("endtest1")   
         
-def main():
+def demo():
     """
     The main function is mainly used to call other functions and run our game.
 
@@ -328,22 +333,42 @@ def main():
                     print("you win!!!")
                     break
                 print("which card would you like to use next?")
-            
-        
 
+def main():
+    """
+    The main function is mainly used to call other functions and run our game.
 
+    return:
+    it will return the state of the game
 
-
-
-
+    Side Facts:
+    it will print the info of the game.
+    """
+    #Main menu: We need two player names
+    p1name = "John"
+    p2name = "Cortana"
     
-
-
-
-
-
-
-
+    #Construct the GameState
+    board = BoardState()
+    players = [Player(p1name, "player1Deck.txt"), Player(p2name, "player2Deck.txt")]
+    turn = 0
+    
+    #Gameloop - Alternate player1 and player2 turn until game is over
+    while turn != 0 or board.points > 0:
+        players[turn].turn(board)
+        turn = (turn + 1) % len(players)
+    
+    #Declare winner (cleanup: reset temp files)
+    max_score = -1
+    winners = []
+    for player in players:
+        score = player.calc_score()
+        if score > max_score:
+            winners = [player]
+        elif score == max_score:
+            winners.append(player)
+    print("Winner(s): " + str(winners))
+    # TODO: Clean up??
 
 if __name__ == "__main__":
     #test1()
