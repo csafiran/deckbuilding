@@ -7,11 +7,46 @@ from tkinter import Menu
 # User Interface
 #####
 
-#class Boardstate:          <--- commented out class (will be done later)
-
-
-    # this is where the UI would go. We plan on doing this part last. It would most
-    # likely be hardcoded at first.
+class BoardState:
+    def __init__(self):
+        self.points = 60
+        #TODO: Add other properties
+    
+    def new_card(self):
+        #Replace center row cards
+        self.monster_cards = []
+        self.center_cards = []
+    
+    def buy_card(self):
+        pass
+    
+    def fight_card(self):
+        pass
+    
+    def generate_card(self):
+        #switch from uniform probability
+        if self.center_cards < 5:
+           new_card = random.choices(range(1, 10),weights=[3,3,4,5,5,2,2,1,1])
+           #add new_card to the list
+           self.center_cards[i] = new_card
+           print(new_card)
+        return new_card
+        
+    def generate_monster(self):
+        #switch from uniform probability
+        if self.monster_cards < 5:
+           new_card = random.choices(self.monster_cards, weights=[],k=6)
+           #add new_card to the list
+        return new_card
+   
+    def __str__(self):
+        # display current point pool level
+        x = f" Points remaining: '{self.points}'"
+        
+        # Find a way to display both card rows
+        
+        #Display both current player's money and combat
+        z = f" Money remaining: '{self.money}' Combat Points remaining: '{self.combat}'"
 
 #####
 # Game Logic
@@ -105,16 +140,6 @@ class Player:
             card (_type_): _description_
         """
         pass
-    
-class Monster:
-    def __init__(self, hp, honer):
-        self.hp = hp
-        self.honer = honer
-        
-class BoardState:
-    def __init__(self):
-        self.points = 60
-        #TODO: Add other properties
         
 class GameAction:
     """
@@ -163,6 +188,15 @@ class GameAction:
    # player117 = Player("John", "playerDeck.txt")
     #print(player117.draw())    
     #print("endtest1")   
+
+def test2():
+    #switch from uniform probability
+    #if self.center_cards < 5:
+    new_card = random.choices(range(1, 10),weights=[3,3,4,5,5,2,2,1,1])
+        #add new_card to the list
+        #self.center_cards[i] = new_card
+    print(new_card)
+    #return new_card
         
 def demo():
     """
@@ -372,4 +406,5 @@ def main():
 
 if __name__ == "__main__":
     #test1()
-    main()
+    test2()
+    #main()
