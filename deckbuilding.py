@@ -186,11 +186,17 @@ class GameAction:
         return f"Now you have {pk.honer} total honers"
         
 def test1():
-    print("starttest1")
-    player117 = Player("John", "playerDeck.txt")
-    print(player117.name)
-    print(player117.draw())    
-    print("endtest1")   
+    
+    player117 = Player("John", "player1Deck.txt")
+    cortona  = Player("cortona", "player2Deck.txt")
+
+    while 1 == 1:
+        print("starttest1")
+        print(player117.name)
+        print(player117.draw()) 
+        print(cortona.name)
+        print(cortona.draw())   
+        print("endtest1")   
 
 def test2():
     #switch from uniform probability
@@ -408,6 +414,6 @@ def main():
     # TODO: Clean up??
 
 if __name__ == "__main__":
-    test1()
+    #test1()
     #test2()
-    #main()
+    main()
