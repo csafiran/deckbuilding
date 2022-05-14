@@ -20,26 +20,29 @@ class BoardState:
         self.center_cards = []
     
     def buy_card(self):
+        #Remove a card at a certain index
         pass
     
     def fight_card(self):
+        #Remove a card at a certain index
         pass
     
     def generate_card(self):
         #switch from uniform probability
         if self.center_cards < 5:
-           new_card = random.choices(range(1, 10),weights=[3,3,4,5,5,2,2,1,1])
+           new_card1 = random.choices(range(1, 10),weights=[3,3,4,5,5,2,2,1,1])
            #add new_card to the list
-           self.center_cards[i] = new_card
-           print(new_card)
-        return new_card
+           self.center_cards[i] = new_card1
+           print(new_card1)
+        return new_card1
         
     def generate_monster(self):
         #switch from uniform probability
         if self.monster_cards < 5:
-           new_card = random.choices(self.monster_cards, weights=[],k=6)
+           new_card2 = random.choices(range(1, 10),weights=[3,3,4,5,5,2,2,1,1])
            #add new_card to the list
-        return new_card
+           self.monster_cards[i] = new_card2
+        return new_card2
    
     def __str__(self):
         # display current point pool level
@@ -141,6 +144,7 @@ class Player:
         Args:
             card (_type_): _description_
         """
+        #Talk with the GameState to add card to discard pile
         pass
         
 class GameAction:
@@ -188,14 +192,14 @@ class GameAction:
 def test1():
     
     player117 = Player("John", "player1Deck.txt")
-    cortona  = Player("cortona", "player2Deck.txt")
+    package  = Player("Cortana", "player2Deck.txt")
 
     while 1 == 1:
         print("starttest1")
         print(player117.name)
         print(player117.draw()) 
-        print(cortona.name)
-        print(cortona.draw())   
+        print(package.name)
+        print(package.draw())   
         print("endtest1")   
 
 def test2():
