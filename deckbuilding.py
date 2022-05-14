@@ -3,6 +3,8 @@ import math
 import random
 from tkinter import Menu
 
+from pyrsistent import discard
+
 #####
 # User Interface
 #####
@@ -100,33 +102,31 @@ class Player:
         has zero cards and still needs to draw one or more.
         """
         
-        # with open(self.path, encoding="UTF-8") as f:
-        #     textList = []
-        #     for line in f:
-        #         line = line.strip()
-        #         line = line.split()
-        #         textList.append(line)
+        with open(self.path, encoding="UTF-8") as f:
+            textList = []
+            for line in f:
+                line = line.strip()
+                line = line.split()
+                textList.append(line)
 
-        # randomTextList = random.sample(textList,len(textList))
+        randomTextList = random.sample(textList,len(textList))
+        print(randomTextList)
         playerHandDraw = []
 
-        # while len(randomTextList) > 5:
-        #     for line in randomTextList:
-        #         for i in line:
-        #             playerHandDraw.append(i)
-        #             textList.pop()
-        #             randomTextList.pop()
+        while len(randomTextList) >= 5:
+            for line in randomTextList:
+                for i in line:
+                    playerHandDraw.append(i)
+                    randomTextList.pop()
+        
 
-        # while len(randomTextList)<=4:
-        #     for line in randomTextList:
-        #         for i in line:
-                    
-        #             playerHandDraw.append(i)
-        #             textList.pop()
-        #             randomTextList.pop()
-                    
-        # print(playerHandDraw)
-        return playerHandDraw
+        while len(randomTextList)<=4:
+            for line in randomTextList:
+                for i in line:
+                    playerHandDraw.append(i)
+                    randomTextList.pop()
+        return playerHandDraw; playerHandDraw.clear() if(len(randomTextList)>0) else randomTextList.append(random.sample(self.discardPile, len(self.discardPile)))
+        print(playerHandDraw)
                             
     def calc_score(self):
         return 0
@@ -183,11 +183,11 @@ class GameAction:
             pk.honer += self.honer
         return f"Now you have {pk.honer} total honers"
         
-#def test1():
-   # print("starttest1")
-   # player117 = Player("John", "playerDeck.txt")
-    #print(player117.draw())    
-    #print("endtest1")   
+def test1():
+    print("starttest1")
+    player117 = Player("John", "playerDeck.txt")
+    print(player117.draw())    
+    print("endtest1")   
 
 def test2():
     #switch from uniform probability
@@ -405,6 +405,6 @@ def main():
     # TODO: Clean up??
 
 if __name__ == "__main__":
-    #test1()
-    test2()
+    test1()
+    #test2()
     #main()
