@@ -110,23 +110,25 @@ class Player:
                 textList.append(line)
 
         randomTextList = random.sample(textList,len(textList))
-        print(randomTextList)
+        #print(randomTextList)
         playerHandDraw = []
 
-        while len(randomTextList) >= 5:
+        
+        playerHandDraw.clear()
+        if len(randomTextList) >= 5:
             for line in randomTextList:
                 for i in line:
                     playerHandDraw.append(i)
                     randomTextList.pop()
         
 
-        while len(randomTextList)<=4:
+        if len(randomTextList)<=4:
             for line in randomTextList:
                 for i in line:
                     playerHandDraw.append(i)
                     randomTextList.pop()
-        return playerHandDraw; playerHandDraw.clear() if(len(randomTextList)>0) else randomTextList.append(random.sample(self.discardPile, len(self.discardPile)))
-        print(playerHandDraw)
+                    
+        return playerHandDraw if(len(randomTextList)>0) else randomTextList.append(random.sample(self.discardPile, len(self.discardPile)))
                             
     def calc_score(self):
         return 0
@@ -186,6 +188,7 @@ class GameAction:
 def test1():
     print("starttest1")
     player117 = Player("John", "playerDeck.txt")
+    print(player117.name)
     print(player117.draw())    
     print("endtest1")   
 
