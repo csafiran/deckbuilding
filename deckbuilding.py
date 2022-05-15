@@ -12,46 +12,42 @@ from pyrsistent import discard
 class BoardState:
     def __init__(self):
         self.points = 60
-        #TODO: Add other properties
+        self.generate_card()
+        self.generate_card()
+        self.generate_card()
+        self.generate_card()
+        self.generate_card()
+        self.generate_card()
     
     def new_card(self):
         #Replace center row cards
         self.monster_cards = []
         self.center_cards = []
     
-    def buy_card(self):
-        #Remove a card at a certain index
-        pass
-    
-    def fight_card(self):
-        #Remove a card at a certain index
-        pass
-    
-    def generate_card(self):
+    def generate_card(self,index):
         #switch from uniform probability
         if self.center_cards < 5:
            new_card1 = random.choices(range(1, 10),weights=[3,3,4,5,5,2,2,1,1])
            #add new_card to the list
-           self.center_cards[i] = new_card1
+           self.center_cards[index] = new_card1
            print(new_card1)
         return new_card1
         
-    def generate_monster(self):
+    def generate_monster(self, index):
         #switch from uniform probability
         if self.monster_cards < 5:
            new_card2 = random.choices(range(1, 10),weights=[3,3,4,5,5,2,2,1,1])
            #add new_card to the list
-           self.monster_cards[i] = new_card2
+           self.monster_cards[index] = new_card2
         return new_card2
    
     def __str__(self):
-        # display current point pool level
-        x = f" Points remaining: '{self.points}'"
-        
         # Find a way to display both card rows
+        print(self.monster_cards)
+        print(self.center_cards)
         
-        #Display both current player's money and combat
-        z = f" Money remaining: '{self.money}' Combat Points remaining: '{self.combat}'"
+        # display current point pool level
+        return f" Points remaining: '{self.points}'"
 
 #####
 # Game Logic
@@ -70,7 +66,7 @@ class Player:
         self.points = 0
         self.path = path
         #player hand will be added to discard pile in gameState
-        #discardPiple may also need to create a new text file that will 
+        #discardPile may also need to create a new text file that will 
         #be changed and replace deck text file once deck text file is empty
         self.drawPile = []
         self.discardPile = []
@@ -145,7 +141,8 @@ class Player:
             card (_type_): _description_
         """
         #Talk with the GameState to add card to discard pile
-        pass
+        
+        return index
         
 class GameAction:
     """
@@ -211,175 +208,7 @@ def test2():
     print(new_card)
     #return new_card
         
-def demo():
-    """
-    The main function is mainly used to call other functions and run our game.
 
-    return:
-    it will return the state of the game
-
-    Side Facts:
-    it will print the info of the game.
-    """
-    #m1 = Monster(random.randint(1,6), random.randint(1,5))
-    #m2 = Monster(random.randint(1,6), random.randint(1,5))
-    #m3 = Monster(random.randint(1,6), random.randint(1,5))
-    #m4 = Monster(random.randint(1,6), random.randint(1,5))
-    #m5 = Monster(random.randint(1,6), random.randint(1,5))
-    #monster5 = []
-    #player1 = Player("tmz")
-    #player2 = Player("sss")
-    #while True:
-    #    us = GameAction.menu
-    point = 0
-    money = 0
-    monster = 3
-
-    print("wecome to the deckbuilding game!")
-    while True:
-        attack1 = random.randint(1,5)
-        attack2 = random.randint(1,5)
-        attack3 = random.randint(1,5)
-        attack4 = random.randint(1,5)
-        attack5 = random.randint(1,5)
-        print("you only have 5 attack cards and you need to kill a monster to get honor")
-        print(f"1.attack = [{attack1}]")
-        print(f"2.attack = [{attack2}]")
-        print(f"3.attack = [{attack3}]")
-        print(f"4.attack = [{attack4}]")
-        print(f"5.attack = [{attack5}]")
-        us = input("please tell me which card would you like to play!")
-        if int(us) == 1:
-            if attack1 < monster:
-                print(f"you still need {monster - attack1} point to kill the monster, which another card would you like to use ")
-                print(f"1.attack = [{attack1}]")
-                print(f"2.attack = [{attack2}]")
-                print(f"3.attack = [{attack3}]")
-                print(f"4.attack = [{attack4}]")
-                print(f"5.attack = [{attack5}]")
-                lol = input()
-                if int(lol) > 0:
-                    print("you have killed the monster!")
-                    point += 5
-                    print(f"now you have {point} honor!")
-                    if point >= 30:
-                        print("you win!!!")
-                        break
-                    
-            else:
-
-
-
-                point += 5
-                print(f"now you have {point} honor!")
-                if point >= 30:
-                    print("you win!!!")
-                    break
-                print("which card would you like to use next?")
-        if int(us) == 2:
-            if attack2 < monster:
-                print(f"you still need {monster - attack2} point to kill the monster, which another card would you like to use ")
-                print(f"1.attack = [{attack1}]")
-                print(f"2.attack = [{attack2}]")
-                print(f"3.attack = [{attack3}]")
-                print(f"4.attack = [{attack4}]")
-                print(f"5.attack = [{attack5}]")
-                lol = input()
-                if int(lol) > 0:
-                    print("you have killed the monster!")
-                    point += 5
-                    print(f"now you have {point} honor!")
-                    if point >= 30:
-                        print("you win!!!")
-                        break
-            else:
-
-
-
-                point += 5
-                print(f"now you have {point} honor!")
-                if point >= 30:
-                    print("you win!!!")
-                    break
-                print("which card would you like to use next?")
-        if int(us) == 3:
-            if attack3 < monster:
-                print(f"you still need {monster - attack3} point to kill the monster, which another card would you like to use ")
-                print(f"1.attack = [{attack1}]")
-                print(f"2.attack = [{attack2}]")
-                print(f"3.attack = [{attack3}]")
-                print(f"4.attack = [{attack4}]")
-                print(f"5.attack = [{attack5}]")
-                lol = input()
-                if int(lol) > 0:
-                    print("you have killed the monster!")
-                    point += 5
-                    print(f"now you have {point} honor!")
-                    if point >= 30:
-                        print("you win!!!")
-                        break
-            else:
-
-
-
-                point += 5
-                print(f"now you have {point} honor!")
-                if point >= 30:
-                    print("you win!!!")
-                    break
-                print("which card would you like to use next?")
-        if int(us) == 4:
-            if attack4 < monster:
-                print(f"you still need {monster - attack4} point to kill the monster, which another card would you like to use ")
-                print(f"1.attack = [{attack1}]")
-                print(f"2.attack = [{attack2}]")
-                print(f"3.attack = [{attack3}]")
-                print(f"4.attack = [{attack4}]")
-                print(f"5.attack = [{attack5}]")
-                lol = input()
-                if int(lol) > 0:
-                    print("you have killed the monster!")
-                    point += 5
-                    print(f"now you have {point} honor!")
-                    if point >= 30:
-                        print("you win!!!")
-                        break
-            else:
-
-
-
-                point += 5
-                print(f"now you have {point} honor!")
-                if point >= 30:
-                    print("you win!!!")
-                    break
-                print("which card would you like to use next?")
-        if int(us) == 5:
-            if attack5 < monster:
-                print(f"you still need {monster - attack5} point to kill the monster, which another card would you like to use ")
-                print(f"1.attack = [{attack1}]")
-                print(f"2.attack = [{attack2}]")
-                print(f"3.attack = [{attack3}]")
-                print(f"4.attack = [{attack4}]")
-                print(f"5.attack = [{attack5}]")
-                lol = input()
-                if int(lol) > 0:
-                    print("you have killed the monster!")
-                    point += 5
-                    print(f"now you have {point} honor!")
-                    if point >= 30:
-                        print("you win!!!")
-                        break
-            else:
-
-
-
-                point += 5
-                print(f"now you have {point} honor!")
-                if point >= 30:
-                    print("you win!!!")
-                    break
-                print("which card would you like to use next?")
 
 def main():
     """
