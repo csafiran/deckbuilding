@@ -22,7 +22,7 @@ class BoardState:
         self.renew_card()
 
     
-    def renew_card(self,index = 1):
+    def renew_card(self,index):
         #switch from uniform probability
         new_card1 = random.choices(range(1, 10),weights=[3,3,4,5,5,2,2,1,1])
         #add new_card to the list
@@ -30,7 +30,7 @@ class BoardState:
         print(new_card1)
         return new_card1
         
-    def renew_monster(self, index = 1):
+    def renew_monster(self, index):
         #switch from uniform probability
         new_card2 = random.choices(range(1, 10),weights=[3,3,4,5,5,2,2,1,1])
         #add new_card to the list
@@ -79,14 +79,14 @@ class Player:
             May print gamestate or other UI information
         """
         hand = self.draw()
-#        money = addMoney(hand)
-#        kombat = addKombat(hand)
- #       chooseActions(self, state, money, kombat)
-        #chooseActions will be used to include UI (display money, game state,
-        # and kombat points)
+        # money = addMoney(hand)
+        # kombat = addKombat(hand)
+        # chooseActions(self, state, money, kombat)
+        # #chooseActions will be used to include UI (display money, game state,
+        # # and kombat points)
         
-        ##TODO:print(GameState)
-        print(self.name + "'s hand: " + str(hand))
+        # print(GameState)
+        # print(self.name + "'s hand: " + str(hand))
         
     def draw(self):
         
@@ -128,17 +128,16 @@ class Player:
     def calc_score(self):
         return 0
     # TODO Stubby
-        
     
-    def buy(self, card):
-        """Adds the card the player's discard pile
-
-        Args:
-            card (_type_): _description_
-        """
-        #Talk with the GameState to add card to discard pile
-        
-        return index
+class Card:
+    def __init__(self, card_string):
+        fields = card_string.split(",")
+        self.name = fields[0]
+        self.card_type = fields[1]
+        self.cost = int(fields[2])
+        self.money_payout = int(fields[3])
+        self.combat_payout = int(fields[4])
+            
         
 class GameAction:
     """
@@ -203,8 +202,6 @@ def test2():
         #self.center_cards[i] = new_card
     print(new_card)
     #return new_card
-        
-
 
 def main():
     """
@@ -246,4 +243,5 @@ if __name__ == "__main__":
     #test1()
     #test2()
     #main()
-    BoardState()
+    #BoardState()
+    print(Player("Cyrus", "player1Deck.txt").draw())

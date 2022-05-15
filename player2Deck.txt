@@ -1,10 +1,10 @@
-Money3Cost:4 
-Money3Cost:4 
-Money3Cost:4 
-Money3Cost:4 
-Money3Cost:4 
-Money3Cost:4 
-Money3Cost:4 
-Money3Cost:4  
-Combat2Cost:2
-Combat2Cost:2
+Money Card, P, 0, 1, 0
+Money Card, P, 0, 1, 0
+Money Card, P, 0, 1, 0
+Money Card, P, 0, 1, 0
+Money Card, P, 0, 1, 0
+Money Card, P, 0, 1, 0
+Money Card, P, 0, 1, 0
+Money Card, P, 0, 1, 0
+Combat Card, P, 0, 0, 1
+Combat Card, P, 0, 0, 1
