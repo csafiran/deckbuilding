@@ -12,33 +12,29 @@ from pyrsistent import discard
 class BoardState:
     def __init__(self):
         self.points = 60
-        self.generate_card()
-        self.generate_card()
-        self.generate_card()
-        self.generate_card()
-        self.generate_card()
-        self.generate_card()
+        self.monster_cards = [None for i in range(1,6)]
+        self.center_cards = [None for i in range(1,6)]
+        self.renew_card()
+        self.renew_card()
+        self.renew_card()
+        self.renew_card()
+        self.renew_card()
+        self.renew_card()
+
     
-    def new_card(self):
-        #Replace center row cards
-        self.monster_cards = []
-        self.center_cards = []
-    
-    def generate_card(self,index):
+    def renew_card(self,index = 1):
         #switch from uniform probability
-        if self.center_cards < 5:
-           new_card1 = random.choices(range(1, 10),weights=[3,3,4,5,5,2,2,1,1])
-           #add new_card to the list
-           self.center_cards[index] = new_card1
-           print(new_card1)
+        new_card1 = random.choices(range(1, 10),weights=[3,3,4,5,5,2,2,1,1])
+        #add new_card to the list
+        self.center_cards[index] = new_card1
+        print(new_card1)
         return new_card1
         
-    def generate_monster(self, index):
+    def renew_monster(self, index = 1):
         #switch from uniform probability
-        if self.monster_cards < 5:
-           new_card2 = random.choices(range(1, 10),weights=[3,3,4,5,5,2,2,1,1])
-           #add new_card to the list
-           self.monster_cards[index] = new_card2
+        new_card2 = random.choices(range(1, 10),weights=[3,3,4,5,5,2,2,1,1])
+        #add new_card to the list
+        self.monster_cards[index] = new_card2
         return new_card2
    
     def __str__(self):
@@ -249,4 +245,5 @@ def main():
 if __name__ == "__main__":
     #test1()
     #test2()
-    main()
+    #main()
+    BoardState()
