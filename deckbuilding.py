@@ -25,7 +25,7 @@ class BoardState:
         new_card1 = random.choices(range(1, 10),weights=[3,3,4,5,5,2,2,1,1])
         #add new_card to the list
         self.center_cards[index] = new_card1
-        print(new_card1)
+        #print(new_card1)
         return new_card1
         
     def renew_monster(self, index):
@@ -68,6 +68,7 @@ class Player:
         self.path = path
         self.draw_pile = []
         self.discard_pile = []
+        self.deck = []
     
     def turn(self, state):
         """Take a turn. Draing the player's hand and having the player make 
@@ -79,6 +80,7 @@ class Player:
         Side Effects:
             May print gamestate or other UI information
         """
+        hand = 0
         hand = self.draw()
         
         # calculate total money availble
@@ -88,7 +90,7 @@ class Player:
         combat = sum([card.combat_payout for card in hand])
 
         # display state
-        print(f"Board: {state}")
+        #print(f"Board: {state}")
         print("Hand:")
         for card in hand:
             print(f"* {card}")
@@ -98,20 +100,30 @@ class Player:
         while True:
             print(f"Remaining Money: {money}")
             print(f"Remaining Combat: {combat}")
-            print("please type 1:for spend money to buy card")
+            print("please type ")
+            print("1: for spend money to buy card")
             print("2: for attack monster")
             choice = input(f"What to do? ??")
             if choice == 1:
+                break
                 mc = input("please choose which card do you want to buy")
                 money -= BoardState.center_cards[mc]
                 hand += BoardState.center_cards[mc]
                 print(f"now you have {money} left")
+                ff = input("do you want to end the round?")
+                if ff == "yes":
+                    self.discard_pile.append(hand)
+                    
                 break
             if choice == 2:
+                break
                 km = input("please choose which monster do you want to kill")
                 combat -= BoardState.monster_cards[km]
                 self.points += BoardState.monster_cards[km] + 1
                 print(f"now you get{BoardState.monster_cards[km] + 1} points")
+                ff = input("do you want to end the round?")
+                if ff == "yes":
+                    self.discard_pile.append(hand)
                 break
 
 
@@ -133,15 +145,15 @@ class Player:
         """
 
         # load deck from file
-        deck = []
+        
         with open(self.path, encoding="UTF-8") as f:
             for line in f:
                 line = line.strip()  # remove leading and trailing whitespace
                 if len(line) > 0:    # ignore blank lines
-                    deck.append(Card(line))
+                    self.deck.append(Card(line))
 
         # draw 5 cards or remaining deck, which ever is smaller
-        hand = remove_choice(deck, min(5, len(deck)))
+        hand = remove_choice(self.deck, min(5, len(self.deck)))
 
         # check if we have 5 cards
         if len(hand) < 5:
@@ -152,10 +164,8 @@ class Player:
             # draw remaining cards (Note: not handling case where there are less then 5 cards between deck and discard)
             hand.extend(remove_choice(deck, 5 - len(hand)))
         
-        # save deck to file
-        with open(self.path, "w", encoding="UTF-8") as f:
-            for card in deck:
-                f.write(f"{repr(card)}\n")
+
+
         
         return hand
                             
@@ -253,22 +263,22 @@ def main():
     board = BoardState()
     players = [Player(p1name, "player1Deck.txt"), Player(p2name, "player2Deck.txt")]
     turn = 0
-    
+    print(f"welcome to the game {p1name}, and {p2name}")
     #Gameloop - Alternate player1 and player2 turn until game is over
-    while turn != 0 or board.points > 0:
+    while board.points > 0:
         players[turn].turn(board)
-        turn = (turn + 1) % len(players)
+        turn += 1
     
     #Declare winner (cleanup: reset temp files)
-    max_score = -1
-    winners = []
-    for player in players:
-        score = Player.calc_score(player)
-        if score > max_score:
-            winners = [player]
-        elif score == max_score:
-            winners.append(player)
-    print("Winner(s): " + str(winners))
+    #max_score = -1
+    #winners = []
+    #for player in players:
+    #    score = Player.calc_score(player)
+    #    if score > max_score:
+    #        winners = [player]
+    #    elif score == max_score:
+    #       winners.append(player)
+    #print("Winner(s): " + str(winners))
     # TODO: Clean up??
 
 if __name__ == "__main__":
