@@ -265,7 +265,7 @@ def main():
     turn = 0
     print(f"welcome to the game {p1name}, and {p2name}")
     #Gameloop - Alternate player1 and player2 turn until game is over
-    while board.points > 0:
+    while board.points > 0: #this loop has some bugs
         players[turn].turn(board)
         turn += 1
     
