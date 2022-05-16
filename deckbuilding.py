@@ -37,8 +37,8 @@ class BoardState:
    
     def __str__(self):
         # Display both card rows
-        print(self.monster_cards)
-        print(self.center_cards)
+        #print(self.monster_cards)
+        #print(self.center_cards)
         
         # Display current point pool level
         return f" Points remaining: '{self.points}'"
@@ -103,9 +103,11 @@ class Player:
             print("please type ")
             print("1: for spend money to buy card")
             print("2: for attack monster")
+            
             choice = input(f"What to do? ??")
+            
             if choice == 1:
-                break
+                
                 mc = input("please choose which card do you want to buy")
                 money -= BoardState.center_cards[mc]
                 hand += BoardState.center_cards[mc]
@@ -115,8 +117,8 @@ class Player:
                     self.discard_pile.append(hand)
                     
                 break
-            if choice == 2:
-                break
+            elif choice == 2:
+                
                 km = input("please choose which monster do you want to kill")
                 combat -= BoardState.monster_cards[km]
                 self.points += BoardState.monster_cards[km] + 1
@@ -244,6 +246,17 @@ def test2():
         #self.center_cards[i] = new_card
     print(new_card)
     #return new_card
+class GameAction:
+    """
+    """
+    def __init__(self):
+        """Set attributes."""
+    
+    def menu(self):
+        while userResponse >= 1 & userResponse <=5:
+            print(f"your have 5 card which is {Player.draw}")
+            userResponse = input("which one would like you to use")
+        return userResponse
 
 def main():
     """
@@ -265,9 +278,159 @@ def main():
     turn = 0
     print(f"welcome to the game {p1name}, and {p2name}")
     #Gameloop - Alternate player1 and player2 turn until game is over
-    while board.points > 0: #this loop has some bugs
-        players[turn].turn(board)
-        turn += 1
+     #this loop has some bugs
+    
+    point = 0
+    
+    monster = 3
+
+    print("wecome to the deckbuilding game!")
+    while True:
+        us = GameAction.menu
+        attack1 = random.randint(1,5)
+        attack2 = random.randint(1,5)
+        attack3 = random.randint(1,5)
+        attack4 = random.randint(1,5)
+        attack5 = random.randint(1,5)
+        print("you only have 5 attack cards and you need to kill a monster to get honor")
+        print(f"1.attack = [{attack1}]")
+        print(f"2.attack = [{attack2}]")
+        print(f"3.attack = [{attack3}]")
+        print(f"4.attack = [{attack4}]")
+        print(f"5.attack = [{attack5}]")
+        us = input("please tell me which card would you like to play!")
+        if int(us) == 1:
+            if attack1 < monster:
+                print(f"you still need {monster - attack1} point to kill the monster, which another card would you like to use ")
+                print(f"1.attack = [{attack1}]")
+                print(f"2.attack = [{attack2}]")
+                print(f"3.attack = [{attack3}]")
+                print(f"4.attack = [{attack4}]")
+                print(f"5.attack = [{attack5}]")
+                lol = input()
+                if int(lol) > 0:
+                    print("you have killed the monster!")
+                    point += 5
+                    print(f"now you have {point} honor!")
+                    if point >= 30:
+                        print("you win!!!")
+                        break
+
+            else:
+
+
+
+                point += 5
+                print(f"now you have {point} honor!")
+                if point >= 30:
+                    print("you win!!!")
+                    break
+                print("which card would you like to use next?")
+        if int(us) == 2:
+            if attack2 < monster:
+                print(f"you still need {monster - attack2} point to kill the monster, which another card would you like to use ")
+                print(f"1.attack = [{attack1}]")
+                print(f"2.attack = [{attack2}]")
+                print(f"3.attack = [{attack3}]")
+                print(f"4.attack = [{attack4}]")
+                print(f"5.attack = [{attack5}]")
+                lol = input()
+                if int(lol) > 0:
+                    print("you have killed the monster!")
+                    point += 5
+                    print(f"now you have {point} honor!")
+                    if point >= 30:
+                        print("you win!!!")
+                        break
+            else:
+
+
+
+                point += 5
+                print(f"now you have {point} honor!")
+                if point >= 30:
+                    print("you win!!!")
+                    break
+                print("which card would you like to use next?")
+        if int(us) == 3:
+            if attack3 < monster:
+                print(f"you still need {monster - attack3} point to kill the monster, which another card would you like to use ")
+                print(f"1.attack = [{attack1}]")
+                print(f"2.attack = [{attack2}]")
+                print(f"3.attack = [{attack3}]")
+                print(f"4.attack = [{attack4}]")
+                print(f"5.attack = [{attack5}]")
+                lol = input()
+                if int(lol) > 0:
+                    print("you have killed the monster!")
+                    point += 5
+                    print(f"now you have {point} honor!")
+                    if point >= 30:
+                        print("you win!!!")
+                        break
+            else:
+
+
+
+                point += 5
+                print(f"now you have {point} honor!")
+                if point >= 30:
+                    print("you win!!!")
+                    break
+                print("which card would you like to use next?")
+        if int(us) == 4:
+            if attack4 < monster:
+                print(f"you still need {monster - attack4} point to kill the monster, which another card would you like to use ")
+                print(f"1.attack = [{attack1}]")
+                print(f"2.attack = [{attack2}]")
+                print(f"3.attack = [{attack3}]")
+                print(f"4.attack = [{attack4}]")
+                print(f"5.attack = [{attack5}]")
+                lol = input()
+                if int(lol) > 0:
+                    print("you have killed the monster!")
+                    point += 5
+                    print(f"now you have {point} honor!")
+                    if point >= 30:
+                        print("you win!!!")
+                        break
+            else:
+
+
+
+                point += 5
+                print(f"now you have {point} honor!")
+                if point >= 30:
+                    print("you win!!!")
+                    break
+                print("which card would you like to use next?")
+        if int(us) == 5:
+            if attack5 < monster:
+                print(f"you still need {monster - attack5} point to kill the monster, which another card would you like to use ")
+                print(f"1.attack = [{attack1}]")
+                print(f"2.attack = [{attack2}]")
+                print(f"3.attack = [{attack3}]")
+                print(f"4.attack = [{attack4}]")
+                print(f"5.attack = [{attack5}]")
+                lol = input()
+                if int(lol) > 0:
+                    print("you have killed the monster!")
+                    point += 5
+                    print(f"now you have {point} honor!")
+                    if point >= 30:
+                        print("you win!!!")
+                        break
+            else:
+
+
+
+                point += 5
+                print(f"now you have {point} honor!")
+                if point >= 30:
+                    print("you win!!!")
+                    break
+                print("which card would you like to use next?")
+    
     
     #Declare winner (cleanup: reset temp files)
     #max_score = -1
