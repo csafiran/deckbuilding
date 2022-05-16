@@ -1,4 +1,3 @@
-#importing math to use math.shuffle for the player's deck
 import math
 import random
 from tkinter import Menu
@@ -12,15 +11,12 @@ from pyrsistent import discard
 class BoardState:
     def __init__(self):
         self.points = 60
-        self.monster_cards = [None for i in range(1,6)]
-        self.center_cards = [None for i in range(1,6)]
-        self.renew_card()
-        self.renew_card()
-        self.renew_card()
-        self.renew_card()
-        self.renew_card()
-        self.renew_card()
-
+        self.monster_cards = [None for i in range(6)]
+        self.center_cards = [None for i in range(6)]
+        for i in range(6):
+            self.renew_card(i)
+        for i in range(6):
+            self.renew_monster(i)
     
     def renew_card(self,index):
         #switch from uniform probability
@@ -38,16 +34,23 @@ class BoardState:
         return new_card2
    
     def __str__(self):
-        # Find a way to display both card rows
+        # Display both card rows
         print(self.monster_cards)
         print(self.center_cards)
         
-        # display current point pool level
+        # Display current point pool level
         return f" Points remaining: '{self.points}'"
 
 #####
 # Game Logic
 #####
+
+def remove_choice(population, k):
+    # function for selecting removing selected card
+    choice = []
+    for i in range(k):
+        choice.append(population.pop(random.randrange(len(population))))
+    return choice
 
 
 class Player:
@@ -61,12 +64,8 @@ class Player:
         self.name = name
         self.points = 0
         self.path = path
-        #player hand will be added to discard pile in gameState
-        #discardPile may also need to create a new text file that will 
-        #be changed and replace deck text file once deck text file is empty
-        self.drawPile = []
-        self.discardPile = []
-    #We may need to initilize our deck, handle, and discard piles here as well
+        self.draw_pile = []
+        self.discard_pile = []
     
     def turn(self, state):
         """Take a turn. Draing the player's hand and having the player make 
@@ -79,92 +78,95 @@ class Player:
             May print gamestate or other UI information
         """
         hand = self.draw()
-        # money = addMoney(hand)
-        # kombat = addKombat(hand)
-        # chooseActions(self, state, money, kombat)
-        # #chooseActions will be used to include UI (display money, game state,
-        # # and kombat points)
         
+        # calculate total money availble
+        money = sum([card.money_payout for card in hand])
+
+        # calculate total kombat available
+        combat = sum([card.combat_payout for card in hand])
+
+        # display state
+        print(f"Board: {state}")
+        print("Hand:")
+        for card in hand:
+            print(f"* {card}")
+
+        # UI
+        cont = True
+        while cont:
+            print(f"Remaining Money: {money}")
+            print(f"Remaining Combat: {combat}")
+            input(f"What to do? ")
+            
+            # TODO stub
+            cont = False
+
+        # discard hand at end of turn
+        self.discard_pile.extend(hand)
+
         # print(GameState)
         # print(self.name + "'s hand: " + str(hand))
         
     def draw(self):
-        
         """
         function to draw five cards from the player's deck. Returns "cards" as
         a list. Adds them to the player's discard pile. This function will 
         automatically take cards from the player's discard pile when the deck
         has zero cards and still needs to draw one or more.
         """
-        
+
+        # load deck from file
+        deck = []
         with open(self.path, encoding="UTF-8") as f:
-            textList = []
             for line in f:
-                line = line.strip()
-                line = line.split()
-                textList.append(line)
+                line = line.strip()  # remove leading and trailing whitespace
+                if len(line) > 0:    # ignore blank lines
+                    deck.append(Card(line))
 
-        randomTextList = random.sample(textList,len(textList))
-        #print(randomTextList)
-        playerHandDraw = []
+        # draw 5 cards or remaining deck, which ever is smaller
+        hand = remove_choice(deck, min(5, len(deck)))
 
+        # check if we have 5 cards
+        if len(hand) < 5:
+            # if not, discard pile becomes deck
+            deck = self.discard_pile
+            self.discard_pile = []
+
+            # draw remaining cards (Note: not handling case where there are less then 5 cards between deck and discard)
+            hand.extend(remove_choice(deck, 5 - len(hand)))
         
-        playerHandDraw.clear()
-        if len(randomTextList) >= 5:
-            for line in randomTextList:
-                for i in line:
-                    playerHandDraw.append(i)
-                    randomTextList.pop()
+        # save deck to file
+        with open(self.path, "w", encoding="UTF-8") as f:
+            for card in deck:
+                f.write(f"{repr(card)}\n")
         
-
-        if len(randomTextList)<=4:
-            for line in randomTextList:
-                for i in line:
-                    playerHandDraw.append(i)
-                    randomTextList.pop()
-                    
-        return playerHandDraw if(len(randomTextList)>0) else randomTextList.append(random.sample(self.discardPile, len(self.discardPile)))
+        return hand
                             
     def calc_score(self):
         return 0
     # TODO Stubby
-    
+
 class Card:
     def __init__(self, card_string):
+        print(f"Card.__init__({card_string}") #for debugging
+        
+        #creating an iterator for parsing
+        self.card_string = card_string
         fields = card_string.split(",")
+        
+        #assigning each attribute in the card with an index  
         self.name = fields[0]
         self.card_type = fields[1]
         self.cost = int(fields[2])
         self.money_payout = int(fields[3])
         self.combat_payout = int(fields[4])
-            
+    
+    def __str__(self):
+        return f'{self.name}: {max(self.money_payout, self.combat_payout)}'
+    
+    def __repr__(self):
+        return self.card_string
         
-class GameAction:
-    """
-    """
-    def __init__(self):
-        """Set attributes."""
-
-
-    
-    def menu(self):
-        while userResponse >= 1 & userResponse <=5:
-
-            print(f"your have 5 card which is {Player.draw}")
-            userResponse = input("which one would like you to use")
-        return userResponse
-    
-#    def battlecard(self):
-
-
-#        if userchoice == attack1:
-#            pass
-
-
-
-
-    #function that will represent what happens when a player purchases a card
-    #from the center row
     
     def defeat():
         """function that will represent what happens when a player defeats a monster 
@@ -242,6 +244,6 @@ def main():
 if __name__ == "__main__":
     #test1()
     #test2()
-    #main()
     #BoardState()
-    print(Player("Cyrus", "player1Deck.txt").draw())
+    #print(Player("Cyrus", "player1Deck.txt").draw())
+    main()
