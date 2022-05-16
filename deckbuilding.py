@@ -94,8 +94,8 @@ class Player:
             print(f"* {card}")
 
         # UI
-        cont = True
-        while cont:
+        
+        while True:
             print(f"Remaining Money: {money}")
             print(f"Remaining Combat: {combat}")
             print("please type 1:for spend money to buy card")
@@ -115,8 +115,8 @@ class Player:
                 break
 
 
-            # TODO stub
-            cont = False
+            
+            
 
         # discard hand at end of turn
         self.discard_pile.extend(hand)
