@@ -2,7 +2,9 @@ import math
 import random
 from tkinter import Menu
 
-from pyrsistent import discard
+from matplotlib.pyplot import draw
+
+#from pyrsistent import discard
 
 #####
 # User Interface
@@ -142,8 +144,18 @@ class Player:
         
         return hand
                             
-    def calc_score(self):
-        return 0
+    def calc_score(self,player):
+        return player.points 
+
+            #if player1 > player2:
+            #    print("player1 win!!")
+                
+            #elif player2 > player1:
+            #    print("player2 win!!")
+            #else:
+            #    print("It is a tie")
+                
+            
     # TODO Stubby
 
 class Card:
@@ -168,20 +180,23 @@ class Card:
         return self.card_string
         
     
-    def defeat():
+    def defeat(self, player, whichm):
         """function that will represent what happens when a player defeats a monster 
     card from the center row
         """
+        if whichm <= 0:
+            player.points += whichm + 1
 
-    def action():
+    def action(self):
         """function that will represent the actions the player does with their cards
         in their hand   
         """
-    def killed(self, pk, whichm):
 
-        if whichm.hp <= 0:
-            pk.honer += self.honer
-        return f"Now you have {pk.honer} total honers"
+
+
+
+
+        
         
 def test1():
     
@@ -233,7 +248,7 @@ def main():
     max_score = -1
     winners = []
     for player in players:
-        score = player.calc_score()
+        score = Player.calc_score(player)
         if score > max_score:
             winners = [player]
         elif score == max_score:
