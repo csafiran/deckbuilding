@@ -98,8 +98,23 @@ class Player:
         while cont:
             print(f"Remaining Money: {money}")
             print(f"Remaining Combat: {combat}")
-            input(f"What to do? ")
-            
+            print("please type 1:for spend money to buy card")
+            print("2: for attack monster")
+            choice = input(f"What to do? ??")
+            if choice == 1:
+                mc = input("please choose which card do you want to buy")
+                money -= BoardState.center_cards[mc]
+                hand += BoardState.center_cards[mc]
+                print(f"now you have {money} left")
+                break
+            if choice == 2:
+                km = input("please choose which monster do you want to kill")
+                combat -= BoardState.monster_cards[km]
+                self.points += BoardState.monster_cards[km] + 1
+                print(f"now you get{BoardState.monster_cards[km] + 1} points")
+                break
+
+
             # TODO stub
             cont = False
 
