@@ -82,8 +82,8 @@ class BoardState:
                     
         """
         # Display both card rows
-        #print(self.monster_cards)
-        #print(self.center_cards)
+        print(self.monster_cards)
+        print(self.center_cards)
         
         # Display current point pool level
         return f" Points remaining: '{self.points}'"
@@ -234,10 +234,10 @@ class Player:
             for line in f:
                 line = line.strip()  # remove leading and trailing whitespace
                 if len(line) > 0:    # ignore blank lines
-                    self.deck.append(Card(line))
+                    deck.append(Card(line))
 
         # draw 5 cards or remaining deck, which ever is smaller
-        hand = remove_choice(self.deck, min(5, len(self.deck)))
+        hand = remove_choice(deck, min(5, len(deck)))
 
         # check if we have 5 cards
         if len(hand) < 5:
@@ -329,7 +329,7 @@ def main():
     board = BoardState()
     players = [Player(p1name, "player1Deck.txt"), Player(p2name, "player2Deck.txt")]
     turn = 0
-    print(f"welcome to the game {p1name}, and {p2name}")
+    
     #Gameloop - Alternate player1 and player2 turn until game is over
     while turn != 0 or board.points > 0:
         players[turn].turn(board)
