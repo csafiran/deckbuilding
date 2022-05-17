@@ -249,6 +249,7 @@ class GameAction:
     """
     def __init__(self):
         """Set attributes."""
+        self.action = 0
     
     def menu(self):
         while userResponse >= 1 & userResponse <=5:
