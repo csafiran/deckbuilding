@@ -1,8 +1,5 @@
-import math
 import random
-from tkinter import Menu
 
-from matplotlib.pyplot import draw
 
 #from pyrsistent import discard
 
