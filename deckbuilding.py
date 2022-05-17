@@ -171,16 +171,17 @@ class Player:
         
         return hand
                             
-    def calc_score(self,player):
-        return player.points 
+    def calc_score(self,player1,player2):
+        
 
-            #if player1 > player2:
-            #    print("player1 win!!")
+        if player1 > player2:
+            print("player1 win!!")
                 
-            #elif player2 > player1:
-            #    print("player2 win!!")
-            #else:
-            #    print("It is a tie")
+        elif player2 > player1:
+            print("player2 win!!")
+        else:
+            print("It is a tie")
+        
                 
             
     # TODO Stubby
